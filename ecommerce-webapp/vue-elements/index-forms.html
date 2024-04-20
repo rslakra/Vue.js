@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head> <!-- start:head -->
+    <!-- start:meta -->
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- end:meta -->
+
+    <!-- title -->
+    <title>Welcome to e-commerce Web Application</title>
+
+    <!-- css -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="./css/styles.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="./css/form-styles.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="./css/table-styles.css" /> -->
+    <link rel="stylesheet" type="text/css" media="all" href="../css/vue-js-styles.css" />
+
+    <!-- JavaScripts -->
+    <script src="../js/flash-cards-data.js"></script>
+    <!-- Using Vue from CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+</head> <!-- end:head -->
+
+<!-- body -->
+
+<body> <!-- start:body -->
+
+    <!-- contents -->
+    <div id="app"> <!-- start:div::app -->
+        <h1 v-text="formTitle"></h1><!-- form's heading -->
+
+        <form method="post" action="">
+            <div> <!-- start:div::deckName -->
+                <label for="deckName"></label>
+                <input type="text" name="deckName" v-model="deckName" />
+                <span class="count-chars">
+                    ({{ deckName.length }} chars)
+                </span>
+            </div> <!-- end:div::deckName -->
+
+            <div> <!-- start:div::description -->
+                <label for="description"></label>
+                <textarea name="description" v-model="deskDescription"></textarea>
+                <span class="count-chars">
+                    ({{ 200 - deskDescription.length }} chars available)
+                </span>
+            </div> <!-- end:div::description -->
+
+            <button type="submit">Create</button>
+        </form>
+
+    </div><!-- end:div::app -->
+
+    <!-- Load after the DOM has loaded in memmory -->
+    <!-- <script src="./js/e-commerce-app.js"></script> -->
+    <script>
+        const CommerceWebApp = {
+
+            /**
+             * Data function data returns the deck of data.
+             * @returns
+             */
+            data() {
+                return {
+                    formTitle: 'Welcome to The e-commerce Application!',
+                    deckName: 'The Deck!',
+                    deskDescription: ''
+                };
+            },
+
+            // /**
+            //  * Holds methods
+            //  */
+            // methods: {
+
+            //     /**
+            //      * Displays the previous card (just decrease the index to next)
+            //      */
+            //     moveCards(change) {
+            //         // console.log("moveCards(" + change + "), index:" + this.index);
+            //         // validate the index is under the bounds when moving.
+            //         if (this.flashCards[this.index + change]) {
+            //             this.index += change;
+            //             this.isFlipped = false;
+            //         }
+            //     },
+            // }
+
+        };
+
+        // create an application and mount the main div
+        const webApp = Vue.createApp(CommerceWebApp).mount("#app");
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head> <!-- start:head -->
+    <!-- start:meta -->
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- end:meta -->
+
+    <!-- title -->
+    <title>Welcome to e-commerce Web Application</title>
+
+    <!-- css -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="./css/styles.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="./css/form-styles.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="./css/table-styles.css" /> -->
+    <link rel="stylesheet" type="text/css" media="all" href="../css/vue-js-styles.css" />
+
+    <!-- JavaScripts -->
+    <script src="../js/flash-cards-data.js"></script>
+    <!-- Using Vue from CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+</head> <!-- end:head -->
+
+<!-- body -->
+
+<body> <!-- start:body -->
+
+    <!-- contents -->
+    <div id="app"> <!-- start:div::app -->
+        <h1 v-text="formTitle"></h1><!-- form's heading -->
+
+        <form method="post" action="">
+            <div> <!-- start:div::deckName -->
+                <label for="deckName"></label>
+                <input type="text" name="deckName" v-model="deckName" />
+                <span class="count-chars">
+                    ({{ deckName.length }} chars)
+                </span>
+            </div> <!-- end:div::deckName -->
+
+            <div> <!-- start:div::description -->
+                <label for="description"></label>
+                <textarea name="description" v-model="deskDescription"></textarea>
+                <span class="count-chars">
+                    ({{ 200 - deskDescription.length }} chars available)
+                </span>
+            </div> <!-- end:div::description -->
+
+            <div class="options"> <!-- start:div::options -->
+                <input type="checkbox" true-value="on" false-value="off" name="reverse" v-model="isReverse"
+                    value="reverse" />
+                <label for="reverse">Include Reverse Cards</label>
+
+                <input type="checkbox" name="timeLimit" v-model="userTimelimit" value="timeLimit" />
+                <label for="timeLimit">Use Deck's Time-limit</label>
+
+                <input type="checkbox" name="reminders" v-model="enableReminders" value="reminders" />
+                <label for="reminders">Enable Reminders</label>
+            </div> <!-- end:div::options -->
+
+            <div class="options"> <!-- start:div::options -->
+                <input type="checkbox" name="haveDisability" v-model="disabilityInformation" value="haveDisability" />
+                <label for="haveDisability">Yes, I have a disability, or have had one in the past</label>
+
+                <input type="checkbox" name="noDisability" v-model="disabilityInformation" value="noDisability" />
+                <label for="noDisability">No, I do not have a disability and have not had one in the
+                    past</label>
+
+                <input type="checkbox" name="noAnswer" v-model="disabilityInformation" value="noAnswer" />
+                <label for="noAnswer">I do not want to answer</label>
+            </div> <!-- end:div::options -->
+
+            <div class="options"> <!-- start:div::options -->
+                <input type="checkbox" name="diversityInformation" v-model="diversityInformation"
+                    value="I am Hispanic or Latino." />
+                <label for="diversityInformation">I am Hispanic or Latino.</label>
+
+                <input type="checkbox" name="diversityInformation" v-model="diversityInformation"
+                    value="American Indian or Alaska Native" />
+                <label for="diversityInformation">American Indian or Alaska Native</label>
+
+                <input type="checkbox" name="diversityInformation" v-model="diversityInformation" value="Asian" />
+                <label for="diversityInformation">Asian</label>
+
+                <input type="checkbox" name="diversityInformation" v-model="diversityInformation"
+                    value="Black or African American" />
+                <label for="diversityInformation">Black or African American</label>
+
+                <input type="checkbox" name="diversityInformation" v-model="diversityInformation"
+                    value="Native Hawaiian or other Pacific Islander" />
+                <label for="diversityInformation">Native Hawaiian or other Pacific Islander</label>
+
+                <input type="checkbox" name="diversityInformation" v-model="diversityInformation" value="White" />
+                <label for="diversityInformation">White</label>
+            </div> <!-- end:div::options -->
+
+            <div>
+                <p>Reverse: <strong>{{ isReverse }}</strong></p>
+                <p>Use Timelimit: <strong>{{ userTimelimit }}</strong></p>
+                <p>Enable Reminders: <strong>{{ enableReminders }}</strong></p>
+
+                <p>Disability Information: <strong>{{ disabilityInformation }}</strong></p>
+                <p>Diversity Information: <strong>{{ diversityInformation }}</strong></p>
+            </div>
+
+            <button type="submit">Create</button>
+        </form>
+
+    </div><!-- end:div::app -->
+
+    <!-- Load after the DOM has loaded in memmory -->
+    <!-- <script src="./js/e-commerce-app.js"></script> -->
+    <script>
+        const CommerceWebApp = {
+
+            /**
+             * Data function data returns the deck of data.
+             * @returns
+             */
+            data() {
+                return {
+                    formTitle: 'Welcome to The e-commerce Application!',
+                    deckName: 'The Deck!',
+                    deskDescription: '',
+                    isReverse: false,
+                    userTimelimit: false,
+                    enableReminders: false,
+                    disabilityInformation: [],
+                    diversityInformation: []
+                };
+            },
+
+        };
+
+        // create an application and mount the main div
+        const webApp = Vue.createApp(CommerceWebApp).mount("#app");
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head> <!-- start:head -->
+    <!-- start:meta -->
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- end:meta -->
+
+    <!-- title -->
+    <title>Welcome to e-commerce Web Application</title>
+
+    <!-- css -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="./css/styles.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="./css/form-styles.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="./css/table-styles.css" /> -->
+    <link rel="stylesheet" type="text/css" media="all" href="../css/vue-js-styles.css" />
+
+    <!-- JavaScripts -->
+    <script src="../js/flash-cards-data.js"></script>
+    <!-- Using Vue from CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+</head> <!-- end:head -->
+
+<!-- body -->
+
+<body> <!-- start:body -->
+
+    <!-- contents -->
+    <div id="app"> <!-- start:div::app -->
+        <h1 v-text="deckName"></h1><!-- heading -->
+
+        <!-- <div class="user-input">
+            Enter Username:
+            <input type="text" v-model="userName" />
+        </div> -->
+
+        <!-- v-on:click="isFlipped = !isFlipped" event binding -->
+        <div @click="isFlipped = !isFlipped" class="card"> <!-- start:div::card -->
+            <h2 v-text="isFlipped ? '' : flashCards[index].front"></h2>
+            <div v-html="isFlipped ? flashCards[index].back : ''"></div>
+            <p class="page-number" v-text="index"></p>
+        </div><!-- end:div::card -->
+
+        <div class="navigation">
+            <!-- &#8594; &rarr; entity right arrow -->
+            <button type="button" @click="moveCards(-1)">&#8592;</button>
+            <button type="button" @click="moveCards(1)">&#8594;</button>
+        </div>
+
+        <!-- v-bind:href to link url bindings -->
+        <a :href="moreDetailsUrl">Read More ...</a><!-- moreDetailsUrl -->
+
+    </div><!-- end:div::app -->
+
+    <!-- Load after the DOM has loaded in memmory -->
+    <!-- <script src="./js/e-commerce-app.js"></script> -->
+    <script>
+        const CommerceWebApp = {
+
+            /**
+             * Data function data returns the deck of data.
+             * @returns
+             */
+            data() {
+                return {
+                    deckName: 'Welcome to The e-commerce Application!',
+                    // you can avoid using the repeated key/value if they are same as here
+                    // flashCards: flashCards
+                    flashCards,
+                    index: 0,
+                    isFlipped: false,
+                    moreDetailsUrl: 'https://vuejs.org/guide/quick-start.html',
+                    userName: "Username"
+                };
+            },
+
+            /**
+             * Holds methods
+             */
+            methods: {
+
+                /**
+                 * Displays the previous card (just decrease the index to next)
+                 */
+                moveCards(change) {
+                    // console.log("moveCards(" + change + "), index:" + this.index);
+                    // validate the index is under the bounds when moving.
+                    if (this.flashCards[this.index + change]) {
+                        this.index += change;
+                        this.isFlipped = false;
+                    }
+                },
+            }
+
+        };
+
+        // create an application and mount the main div
+        const webApp = Vue.createApp(CommerceWebApp).mount("#app");
+    </script>
+
+</body>
+
+</html>
